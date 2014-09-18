@@ -326,7 +326,7 @@
      */
     function challengeEight(displayer){
 	addContent(displayer, "Challenge 8", 
-		   "Completed w/o use of data persistence. See \'./cards\'");
+	   "Completed w/o use of data persistence. See \'./challenge8\'");
     }
 
 
