@@ -326,7 +326,9 @@
      */
     function challengeEight(displayer){
 	addContent(displayer, "Challenge 8", 
-	   "Completed w/o use of data persistence. See \'./challenge8\'");
+	   "Completed w/o use of data persistence." + 
+		   '<i>To run read the instructions ' + 
+'<a href="http://skumar221.github.io/disney-challenge/challenge8/README.txt">here.</a></i>');
     }
 
 
