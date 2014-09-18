@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Basic Cards</title>
+    <meta charset="UTF-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  </head>
+  <body>
+
+
+    <input type="submit" name="shuffle" value="shuffle" id="shuffle">
+    <input type="submit" name="draw" value="draw" id="draw">     
+    <input type="submit" name="repack" value="repack" id="repack">
+    
+
+    <div>
+      Draw Amount: <input id="amount" type="number" name="drawnum" value="">
+    </div>
+    <div id="dealerDeckDisplay"></div>
+    <div id="playerDeckDisplay"></div>
+
+  </body>
+
+  <script>
+
+
+    var cardGame;
+
+    function updateCardGame(data){
+	window.console.log(data);
+
+	// Update the display
+	var json = JSON.parse(data.replace(/&quot;/g,'"'));
+	$('#dealerDeckDisplay').html("<br><b>Dealer deck (count: " + json['dealer'].length
+				     + ")</b><br>" + JSON.stringify(json['dealer']));
+	$('#playerDeckDisplay').html("<br><b>Player deck (count: " + json['player'].length
+				     + ")</b><br>" + JSON.stringify(json['player']));
+
+	// Update the card game
+	cardGame = json;
+
+	// Update the amount max
+	$('#amount').attr('max', json['dealer'].length);
+    }
+    
+
+    function createPostData(action, _cardGame){
+	return {'decks': {
+	    'action': action,
+	    'drawnum': $('#amount').val(),
+	    'dealer': _cardGame['dealer'],
+	    'player': _cardGame['player']
+	}}
+    }
+
+
+    //
+    // PRELIM: Get the cards
+    //
+    $(document).ready(function(){
+	$.ajax({
+	    type: "GET",
+	    url: 'cards.php',
+	    data: 'format=json',
+	    async: false,
+	    success: updateCardGame
+	})
+    })
+
+    $("#shuffle").click(function(){
+	window.console.log("SHUFFLE", cardGame);
+	$.ajax({
+	    type: "POST",
+	    url: "cards.php",
+	    data: createPostData('shuffle', cardGame),
+	    success: updateCardGame,
+	    error: function(e){
+		console.log('Error:', e.message);
+	    }
+	});
+    });
+
+    $("#draw").click(function(){
+	$.ajax({
+	    type: "POST",
+	    url: "cards.php",
+	    data: createPostData('draw', cardGame),
+	    success: updateCardGame,
+	    error: function(e){
+		console.log('Error:', e.message);
+	    }
+	});
+    });
+
+    $("#repack").click(function(){
+	$.ajax({
+	    type: "POST",
+	    url: "cards.php",
+	    data: createPostData('repack', cardGame),
+	    success: updateCardGame,
+	    error: function(e){
+		console.log('Error:', e.message);
+	    }
+	});
+    });
+
+  </script>
+</html>
+

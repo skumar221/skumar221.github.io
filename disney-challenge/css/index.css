@@ -1,0 +1,87 @@
+.font, .lg-font, .md-font, .sm-font, .body {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.lg-font{
+    font-size: 18px;
+}
+.md-font{
+    font-size: 16px;
+}
+
+.sm-font{
+    font-size: 14px;
+}
+
+body {
+    margin: 0px;
+    font-weight: bold;
+
+}
+
+.header,
+.footer {
+    position: fixed;
+    background-color: #870eae;
+    color: white;
+    width: 100%;
+}
+
+
+.header {
+    height: 50px;
+}
+
+.footer{
+    bottom: 0px;
+    height: 30px;
+    width: 100%;
+}
+
+
+.headerfootertext {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    margin-left: 10px;
+}
+
+.display {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: relative;
+    top: 60px;
+    width: 80%;
+    height: calc(100% - 100px);
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    min-height: 300px;
+    background-color: #eeeeee;
+    border: solid 1px rgb(200,200,200);
+    border-radius: 20px;
+    color: black;
+    font-size: 14px;
+    font-weight: normal;
+    
+}
+
+.challengetext {
+    position: relative;
+    width: 100%;
+    margin: 20px;
+}
+
+
+.crossoutable {
+    cursor: pointer;
+   
+}
+
+
+.crossout {
+    /*cursor: pointer;*/
+    text-decoration: line-through;
+}
